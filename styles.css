@@ -33,6 +33,11 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
   background: var(--ink-900);
@@ -229,6 +234,7 @@ input:focus-visible {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .search {
@@ -239,7 +245,8 @@ input:focus-visible {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 8px 12px;
-  min-width: 220px;
+  min-width: 0;
+  flex: 1 1 220px;
 }
 
 .search__icon { width: 16px; height: 16px; color: var(--text-dim); flex-shrink: 0; }
@@ -252,6 +259,7 @@ input:focus-visible {
   font-size: 0.88rem;
   outline: none;
   width: 100%;
+  min-width: 0;
 }
 
 .search input::placeholder { color: var(--text-dim); }
@@ -636,7 +644,24 @@ tbody tr:hover { background: var(--surface-raised); }
 
   .sidebar__foot { display: none; }
 
-  .topbar { padding: 16px 20px 16px 74px; }
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px 20px 16px 74px;
+  }
+
+  .topbar__actions {
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .search { flex: 1 1 auto; }
+
+  .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
   .main { padding: 20px; }
 
   .cards { grid-template-columns: 1fr; }
@@ -645,9 +670,10 @@ tbody tr:hover { background: var(--surface-raised); }
 }
 
 @media (max-width: 460px) {
-  .topbar__actions { width: 100%; }
-  .search { min-width: 0; flex: 1 1 100%; order: 1; }
-  .btn { flex: 1; text-align: center; }
+  .topbar__actions { flex-wrap: wrap; }
+  .search { flex: 1 1 100%; }
+  .btn { flex: 1 1 auto; text-align: center; }
+
   .chart__bars { gap: 8px; }
   .bar { width: 9px; }
 
