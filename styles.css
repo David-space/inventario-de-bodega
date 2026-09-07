@@ -647,19 +647,25 @@ tbody tr:hover { background: var(--surface-raised); }
   .topbar {
     flex-direction: column;
     align-items: stretch;
-    padding: 16px 20px 16px 74px;
+    padding: 16px 20px 16px 96px;
   }
 
   .topbar__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     width: 100%;
-    flex-wrap: nowrap;
   }
 
-  .search { flex: 1 1 auto; }
+  .search {
+    grid-column: 1 / -1;
+    flex: unset;
+  }
 
   .btn {
-    flex: 0 0 auto;
-    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .main { padding: 20px; }
@@ -670,10 +676,6 @@ tbody tr:hover { background: var(--surface-raised); }
 }
 
 @media (max-width: 460px) {
-  .topbar__actions { flex-wrap: wrap; }
-  .search { flex: 1 1 100%; }
-  .btn { flex: 1 1 auto; text-align: center; }
-
   .chart__bars { gap: 8px; }
   .bar { width: 9px; }
 
