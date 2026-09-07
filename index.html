@@ -136,9 +136,9 @@
         <div class="panel__head">
           <h2 id="tableTitle">Existencias por producto</h2>
           <div class="tabs" role="tablist" aria-label="Filtrar existencias">
-            <button role="tab" aria-selected="true" class="tab is-active">Todas</button>
-            <button role="tab" aria-selected="false" class="tab">Bajo mínimo</button>
-            <button role="tab" aria-selected="false" class="tab">Sin movimiento</button>
+            <button role="tab" aria-selected="true" class="tab is-active" data-filter="all">Todas</button>
+            <button role="tab" aria-selected="false" class="tab" data-filter="low">Bajo mínimo</button>
+            <button role="tab" aria-selected="false" class="tab" data-filter="none">Sin movimiento</button>
           </div>
         </div>
 
@@ -157,7 +157,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-status="ok" data-movement="active">
                 <td class="mono">BOD-0142</td>
                 <td>Guantes de nitrilo talla M</td>
                 <td>Seguridad</td>
@@ -166,7 +166,7 @@
                 <td><span class="status status--ok">Óptimo</span></td>
                 <td>Insumed S.A.S</td>
               </tr>
-              <tr>
+              <tr data-status="low" data-movement="active">
                 <td class="mono">BOD-0198</td>
                 <td>Cinta de embalaje 48mm</td>
                 <td>Empaque</td>
@@ -175,7 +175,7 @@
                 <td><span class="status status--low">Bajo mínimo</span></td>
                 <td>Distripack Ltda</td>
               </tr>
-              <tr>
+              <tr data-status="ok" data-movement="none">
                 <td class="mono">BOD-0231</td>
                 <td>Bandas transportadoras 2"</td>
                 <td>Repuestos</td>
@@ -184,7 +184,7 @@
                 <td><span class="status status--ok">Óptimo</span></td>
                 <td>MecánicaSur</td>
               </tr>
-              <tr>
+              <tr data-status="critical" data-movement="active">
                 <td class="mono">BOD-0305</td>
                 <td>Etiquetas térmicas 4x6</td>
                 <td>Empaque</td>
@@ -193,7 +193,7 @@
                 <td><span class="status status--critical">Crítico</span></td>
                 <td>Distripack Ltda</td>
               </tr>
-              <tr>
+              <tr data-status="ok" data-movement="none">
                 <td class="mono">BOD-0367</td>
                 <td>Pallets de madera 1.2x1.0</td>
                 <td>Logística</td>
@@ -202,7 +202,7 @@
                 <td><span class="status status--ok">Óptimo</span></td>
                 <td>Maderas del Llano</td>
               </tr>
-              <tr>
+              <tr data-status="low" data-movement="active">
                 <td class="mono">BOD-0412</td>
                 <td>Aceite lubricante 20L</td>
                 <td>Repuestos</td>
@@ -213,6 +213,7 @@
               </tr>
             </tbody>
           </table>
+          <p class="table-empty" id="tableEmpty" hidden>No se encontraron productos que coincidan con tu búsqueda o filtro.</p>
         </div>
       </section>
 
