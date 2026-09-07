@@ -450,6 +450,14 @@ tbody tr:hover { background: var(--surface-raised); }
 
 .mono { font-family: var(--font-mono); font-size: 0.83rem; color: var(--text-mid); }
 
+.table-empty {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  padding: 28px 10px;
+  margin: 0;
+}
+
 .status {
   font-size: 0.76rem;
   font-weight: 600;
@@ -638,7 +646,15 @@ tbody tr:hover { background: var(--surface-raised); }
 
 @media (max-width: 460px) {
   .topbar__actions { width: 100%; }
-  .search { min-width: 0; flex: 1; }
+  .search { min-width: 0; flex: 1 1 100%; order: 1; }
+  .btn { flex: 1; text-align: center; }
   .chart__bars { gap: 8px; }
   .bar { width: 9px; }
+
+  .brand__mark { width: 32px; height: 32px; font-size: 0.75rem; }
+  .topbar__title h1 { font-size: 1.1rem; }
+  .topbar__title p { font-size: 0.78rem; }
+
+  .card__value { font-size: 1.6rem; }
+  .panel { padding: 16px; }
 }
