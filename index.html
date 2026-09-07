@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Almacén Norte · Panel de inventario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <button class="skip-link" id="menuToggle" aria-expanded="true" aria-controls="sidebar">
+    <span class="hamburger" aria-hidden="true"></span>
+    <span>Menú</span>
+  </button>
+
+  <div class="shell">
+
+    <!-- Barra lateral de navegación -->
+    <nav class="sidebar" id="sidebar" role="navigation" aria-label="Navegación principal">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">AN</span>
+        <div class="brand__text">
+          <strong>Almacén Norte</strong>
+          <span>Control de inventario</span>
+        </div>
+      </div>
+
+      <ul class="nav-list">
+        <li><a href="#resumen" class="nav-link is-active"><span class="nav-icon" aria-hidden="true">◧</span>Resumen</a></li>
+        <li><a href="#existencias" class="nav-link"><span class="nav-icon" aria-hidden="true">▤</span>Existencias</a></li>
+        <li><a href="#movimientos" class="nav-link"><span class="nav-icon" aria-hidden="true">↕</span>Movimientos</a></li>
+        <li><a href="#proveedores" class="nav-link"><span class="nav-icon" aria-hidden="true">⧉</span>Proveedores</a></li>
+        <li><a href="#alertas" class="nav-link"><span class="nav-icon" aria-hidden="true">▲</span>Alertas<span class="badge">6</span></a></li>
+        <li><a href="#ajustes" class="nav-link"><span class="nav-icon" aria-hidden="true">⚙</span>Ajustes</a></li>
+      </ul>
+
+      <div class="sidebar__foot">
+        <div class="user-chip">
+          <span class="user-chip__avatar" aria-hidden="true">MP</span>
+          <div>
+            <strong>María Pardo</strong>
+            <span>Jefa de bodega</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Encabezado superior -->
+    <header class="topbar" role="banner">
+      <div class="topbar__title">
+        <h1>Resumen del inventario</h1>
+        <p>Bodega central · actualizado hace 4 minutos</p>
+      </div>
+
+      <div class="topbar__actions">
+        <label class="search" for="searchSku">
+          <span class="visually-hidden">Buscar por SKU o nombre de producto</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" class="search__icon"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="13" y1="13" x2="18" y2="18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input id="searchSku" type="search" placeholder="Buscar SKU, producto o proveedor…" />
+        </label>
+        <button class="btn btn--ghost" type="button">Exportar</button>
+        <button class="btn btn--primary" type="button">+ Nuevo ingreso</button>
+      </div>
+    </header>
+
+    <!-- Área principal -->
+    <main class="main" id="resumen" role="main" aria-label="Panel principal de inventario">
+
+      <!-- Tarjetas de resumen -->
+      <section class="cards" aria-label="Indicadores clave">
+        <article class="card card--accent">
+          <div class="card__top">
+            <span class="card__label">SKUs activos</span>
+            <span class="pill pill--up">+3.2%</span>
+          </div>
+          <p class="card__value">1,248</p>
+          <p class="card__foot">86 categorías registradas</p>
+        </article>
+
+        <article class="card">
+          <div class="card__top">
+            <span class="card__label">Unidades en bodega</span>
+            <span class="pill pill--up">+1.1%</span>
+          </div>
+          <p class="card__value">42,930</p>
+          <p class="card__foot">Capacidad usada: 78%</p>
+        </article>
+
+        <article class="card">
+          <div class="card__top">
+            <span class="card__label">Valor del inventario</span>
+            <span class="pill pill--down">−0.6%</span>
+          </div>
+          <p class="card__value">$318.4M</p>
+          <p class="card__foot">Pesos colombianos</p>
+        </article>
+
+        <article class="card card--warn">
+          <div class="card__top">
+            <span class="card__label">Stock crítico</span>
+            <span class="pill pill--warn">Revisar</span>
+          </div>
+          <p class="card__value">14</p>
+          <p class="card__foot">Productos bajo el mínimo</p>
+        </article>
+      </section>
+
+      <!-- Gráfico -->
+      <section class="panel panel--chart" id="movimientos" aria-labelledby="chartTitle">
+        <div class="panel__head">
+          <h2 id="chartTitle">Entradas y salidas — últimos 7 días</h2>
+          <div class="legend" aria-hidden="true">
+            <span><i class="dot dot--in"></i>Entradas</span>
+            <span><i class="dot dot--out"></i>Salidas</span>
+          </div>
+        </div>
+
+        <div class="chart" role="img" aria-label="Gráfico de barras comparando unidades de entrada y salida por día, de lunes a domingo. Las entradas superan las salidas la mayoría de días, con un pico de entradas el jueves.">
+          <div class="chart__bars">
+            <div class="bar-group"><span class="bar bar--in" style="--h:52%"></span><span class="bar bar--out" style="--h:38%"></span><label>Lun</label></div>
+            <div class="bar-group"><span class="bar bar--in" style="--h:61%"></span><span class="bar bar--out" style="--h:44%"></span><label>Mar</label></div>
+            <div class="bar-group"><span class="bar bar--in" style="--h:47%"></span><span class="bar bar--out" style="--h:55%"></span><label>Mié</label></div>
+            <div class="bar-group"><span class="bar bar--in" style="--h:88%"></span><span class="bar bar--out" style="--h:40%"></span><label>Jue</label></div>
+            <div class="bar-group"><span class="bar bar--in" style="--h:64%"></span><span class="bar bar--out" style="--h:58%"></span><label>Vie</label></div>
+            <div class="bar-group"><span class="bar bar--in" style="--h:33%"></span><span class="bar bar--out" style="--h:29%"></span><label>Sáb</label></div>
+            <div class="bar-group"><span class="bar bar--in" style="--h:22%"></span><span class="bar bar--out" style="--h:18%"></span><label>Dom</label></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tabla de datos -->
+      <section class="panel panel--table" id="existencias" aria-labelledby="tableTitle">
+        <div class="panel__head">
+          <h2 id="tableTitle">Existencias por producto</h2>
+          <div class="tabs" role="tablist" aria-label="Filtrar existencias">
+            <button role="tab" aria-selected="true" class="tab is-active">Todas</button>
+            <button role="tab" aria-selected="false" class="tab">Bajo mínimo</button>
+            <button role="tab" aria-selected="false" class="tab">Sin movimiento</button>
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <caption class="visually-hidden">Listado de productos con SKU, categoría, existencias, mínimo, estado y proveedor</caption>
+            <thead>
+              <tr>
+                <th scope="col">SKU</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Existencias</th>
+                <th scope="col">Mínimo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Proveedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mono">BOD-0142</td>
+                <td>Guantes de nitrilo talla M</td>
+                <td>Seguridad</td>
+                <td class="mono">3,120</td>
+                <td class="mono">500</td>
+                <td><span class="status status--ok">Óptimo</span></td>
+                <td>Insumed S.A.S</td>
+              </tr>
+              <tr>
+                <td class="mono">BOD-0198</td>
+                <td>Cinta de embalaje 48mm</td>
+                <td>Empaque</td>
+                <td class="mono">86</td>
+                <td class="mono">150</td>
+                <td><span class="status status--low">Bajo mínimo</span></td>
+                <td>Distripack Ltda</td>
+              </tr>
+              <tr>
+                <td class="mono">BOD-0231</td>
+                <td>Bandas transportadoras 2"</td>
+                <td>Repuestos</td>
+                <td class="mono">412</td>
+                <td class="mono">80</td>
+                <td><span class="status status--ok">Óptimo</span></td>
+                <td>MecánicaSur</td>
+              </tr>
+              <tr>
+                <td class="mono">BOD-0305</td>
+                <td>Etiquetas térmicas 4x6</td>
+                <td>Empaque</td>
+                <td class="mono">54</td>
+                <td class="mono">300</td>
+                <td><span class="status status--critical">Crítico</span></td>
+                <td>Distripack Ltda</td>
+              </tr>
+              <tr>
+                <td class="mono">BOD-0367</td>
+                <td>Pallets de madera 1.2x1.0</td>
+                <td>Logística</td>
+                <td class="mono">238</td>
+                <td class="mono">60</td>
+                <td><span class="status status--ok">Óptimo</span></td>
+                <td>Maderas del Llano</td>
+              </tr>
+              <tr>
+                <td class="mono">BOD-0412</td>
+                <td>Aceite lubricante 20L</td>
+                <td>Repuestos</td>
+                <td class="mono">19</td>
+                <td class="mono">25</td>
+                <td><span class="status status--low">Bajo mínimo</span></td>
+                <td>MecánicaSur</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel--suppliers" id="proveedores" aria-labelledby="suppliersTitle">
+        <div class="panel__head">
+          <h2 id="suppliersTitle">Proveedores activos</h2>
+        </div>
+        <ul class="supplier-list">
+          <li class="supplier">
+            <span class="supplier__mark" aria-hidden="true">DP</span>
+            <div class="supplier__info">
+              <strong>Distripack Ltda</strong>
+              <span>Empaque y etiquetado · 12 órdenes activas</span>
+            </div>
+          </li>
+          <li class="supplier">
+            <span class="supplier__mark" aria-hidden="true">MS</span>
+            <div class="supplier__info">
+              <strong>MecánicaSur</strong>
+              <span>Repuestos industriales · 5 órdenes activas</span>
+            </div>
+          </li>
+          <li class="supplier">
+            <span class="supplier__mark" aria-hidden="true">ML</span>
+            <div class="supplier__info">
+              <strong>Maderas del Llano</strong>
+              <span>Logística y pallets · 3 órdenes activas</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel panel--alerts" id="alertas" aria-labelledby="alertsTitle">
+        <div class="panel__head">
+          <h2 id="alertsTitle">Alertas recientes</h2>
+        </div>
+        <ul class="alert-list">
+          <li class="alert alert--critical">
+            <strong>Etiquetas térmicas 4x6</strong> cayó a 54 unidades, por debajo del mínimo de 300.
+          </li>
+          <li class="alert alert--low">
+            <strong>Aceite lubricante 20L</strong> está cerca de agotarse. Quedan 19 de 25 mínimo.
+          </li>
+          <li class="alert alert--info">
+            La orden <strong>OC-4482</strong> de Distripack Ltda llega mañana a las 9:00 a.m.
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Footer informativo -->
+    <footer class="footer" role="contentinfo" id="ajustes">
+      <p>Almacén Norte — Sistema interno de control de inventario.</p>
+      <p>Última sincronización: 06 sep 2026, 10:42 a.m. · <a href="#resumen">Volver arriba</a></p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
